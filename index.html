@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+	
+	<title>Formulario</title>
+	
+	<!-- Bootstrap Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Font Awesome Stylesheets -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- Template Main Stylesheets -->
+	<link rel="stylesheet" href="css/contact-form.css" type="text/css">	
+	
+</head>
+
+<body>
+	
+	<section id="contact-form-section" class="form-content-wrap">
+		<div class="container" >
+			<div class="row">
+				<div class="tab-content">
+					<div class="col-sm-7">
+						<div class="item-wrap">
+							<div class="row ">
+								
+								<div class="col-sm-12">
+									<div class="item-content colBottomMargin">
+										<div class="item-info">
+											<h2 class="display-5 text-center">Formulario</h2>
+											
+										</div><!--End item-info -->
+										
+								   </div><!--End item-content -->
+								</div><!--End col -->
+
+								<div class="col-md-12">
+									<form id="contactForm" name="contactform" data-toggle="validator" class="popup-form">
+										<div class="row">
+											<div id="msgContactSubmit" class="hidden"></div>
+														
+											<div class="form-group col-sm-12">
+												<div class="help-block with-errors"></div>
+													<input name="fname" id="fname" placeholder="Tu nombre*" class="form-control" type="text" required data-error="Por favor ingresa tu nombre"> 
+												<div class="input-group-icon"><i class="fa fa-user"></i></div>
+											</div><!-- end form-group -->
+
+											<div class="form-group col-sm-12">
+												<div class="help-block with-errors"></div>
+													<input name="email" id="email" placeholder="Tu E-mail*" pattern=".*@\w{2,}\.\w{2,}" class="form-control" type="email" required data-error="Por favor ingresa un correo electrónico válido">
+												<div class="input-group-icon"><i class="fa fa-envelope"></i></div>
+											</div><!-- end form-group -->
+
+											<div class="form-group col-sm-12">
+												<div class="help-block with-errors"></div>
+													<input name="phone" id="phone" placeholder="Teléfono*" class="form-control" type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" required data-error="Por favor ingresa tu número de teléfono" maxlength="10">
+												<div class="input-group-icon"><i class="fa fa-phone"></i></div> 
+											</div><!-- end form-group -->
+
+											<div class="form-group col-sm-12">
+												<div class="help-block with-errors"></div>
+													<input name="password" id="password" placeholder="Contraseña*" class="form-control" type="password" required data-error="Por favor ingresa una contraseña" maxlength="16" minlength="8">
+												<div class="input-group-icon"><i class="fa fa-unlock"></i></div> 
+											</div><!-- end form-group -->
+
+											<div class="form-group col-sm-12">
+												<div class="help-block with-errors"></div>
+													<input name="date" id="date" placeholder="*Fecha de nacimiento: 17/02/1997*" class="form-control" type="date" required data-error="Por favor ingresa tu dia de nacimiento">
+												<div class="input-group-icon"><i class="fa fa-birthday-cake"></i></div>
+											</div><!-- end form-group -->
+
+														
+											<div class="form-group last col-sm-12">
+												<button type="button" id="guardar" class="btn btn-custom"><i class='fa fa-envelope'></i> Enviar</button>
+											</div><!-- end form-group -->		
+										</div><!-- end row -->
+									</form><!-- end form -->
+								</div>
+							</div><!--End row -->
+							<!-- Popup end -->
+						</div><!-- end item-wrap -->
+					</div><!--End col -->
+				</div><!--End tab-content -->
+			</div><!--End row -->
+		</div><!--End container -->
+	</section>
+		
+	<div class="colBottomMargin">
+		&nbsp;<div class="colBottomMargin">&nbsp;</div>
+	</div>	
+	
+	<div id="footer" class="footer">
+		<div class="container">			
+			
+			<div class="row">					
+				<div class="footer-top col-sm-12">
+					<p class="text-center copyright">&copy; 2019 <a href="https://samvilrod.github.io/" class="footer-site-link">Samuel Villanueva</a> todos los derechos reservados. </p>
+				</div><!-- end col --> 
+			</div><!-- end row -->
+			
+		</div><!--End container -->
+	</div>
+	
+	<a href="#" class="scrollup"><i class="fa fa-arrow-circle-up"></i></a>
+		
+	<!-- jQuery Library -->
+	<script src="js/jquery-3.2.1.min.js"></script>	
+	<!-- Popper js -->
+	<script src="js/popper.min.js"></script>
+	<!-- Bootstrap Js -->
+	<script src="js/bootstrap.min.js"></script>
+	
+	<!-- Form Validator 
+	<script src="js/validator.min.js"></script>-->
+	<!-- Contact Form Js 
+	<script src="js/contact-form.js"></script>
+	<script src="js/validarForm.js"></script>-->
+
+
+	<!-- utilizar el evento change: para validar el input hasta que la persona termine-->
+	<!-- al final despues de presionar click revalidar que todo este bien-->
+	<!-- que el numero sea numerico, no double, solo caracteres del 0-9 min 10 y max 10-->
+	<!-- contraseña: minimo 8 max 16 y poner otro campo para repetir contraseña-->
+	<!-- guardar la informacion en una base de datos-->
+
+	<script>
+		$(function(){
+			$('#guardar').click(function(){
+				
+				var nombre = $('#fname').val().trim().trim(),
+					correo = $('#email').val().trim(),
+					tel = $('#phone').val().trim(),
+					contrasena = $('#password').val().trim(),
+					fecha = $('#date').val().trim(),
+
+					expresionCorreo = /\w+@\w+\.+[a-z]/,
+					expresionNombre = /^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/,
+					dataForm = {nombre, correo, tel, contrasena, fecha};
+
+				// console.log('noombre: ' + nombre);
+				// console.log('correo: ' + correo);
+				// console.log({tel});
+				// tel = parseInt(tel);// pasar de texto a int
+				// console.log('telefono en int ', {tel});
+				// console.log('contraseña: ' + contrasena);
+				// console.log('Fecha de Nacimiento: ' + fecha);
+				console.log({dataForm});
+
+				//return; //para que lo que sigue no se ejecute
+
+				if(nombre === "" || correo === "" || tel === "" || contrasena === "" || fecha === ""){
+						alert("Todos los campos son obligatorios");
+						console.log('Todos los campos son obligatorios');
+						return false;
+
+				}else if(nombre.length>100){
+						alert("El nombre es muy largo, intenta con uno mas corto.");
+						console.log('El nombre es muy largo');
+						return false;
+				
+				}else if(correo.length>100){
+						alert("El correo es muy largo.");
+						console.log('El correo es muy largo.');
+						return false;
+				
+				}else if(tel.length != 10){
+						alert("El telefono debe ser de 10 caracteres");
+						console.log('El telefono debe ser de 10 caracteres.');
+						return false;
+				}
+					//mensaje no mas de 280
+				else if(contrasena.length < 8 || contrasena > 16){
+						alert("La contraseña de minimo 8 maximo 16 caracteres, letras y numeros");
+						console.log('Contraseña no valida');
+						return false;
+				}
+					//validar correo electronico
+				else if(!expresionCorreo.test(correo)){
+						alert("El correo no es valido");
+						console.log('El correo no es valido');
+						return false;
+				}
+					//validar nombre
+				else if(!expresionNombre.test(nombre)){
+						alert("El nombre no es valido");
+						console.log('El nombre no es valido');
+						return false;
+				
+				} else {
+						//Si llegamos a este punto quiere decir que todo fue valido
+					$.ajax({
+						url: 'guardar.php',
+						method: 'post',
+						cache: false,
+						data: dataForm,
+						success: function(respuesta) {
+							if(respuesta == 'perfecto'){
+								alert('Informacion enviada');
+								$('#contactForm').trigger('reset');
+							}else{
+								alert('Error al enviar informacion');
+								$('#contactForm').trigger('reset');
+							}
+						},
+						error: function(a,b,c){
+							console.log(a,b,c);
+						}
+					})		
+					return true;
+				}						
+			});
+		});
+	</script>
+	
+</body>
+</html>
