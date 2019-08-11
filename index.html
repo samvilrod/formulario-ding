@@ -111,12 +111,6 @@
 	<script src="js/popper.min.js"></script>
 	<!-- Bootstrap Js -->
 	<script src="js/bootstrap.min.js"></script>
-	
-	<!-- Form Validator 
-	<script src="js/validator.min.js"></script>-->
-	<!-- Contact Form Js 
-	<script src="js/contact-form.js"></script>
-	<script src="js/validarForm.js"></script>-->
 
 
 	<!-- utilizar el evento change: para validar el input hasta que la persona termine-->
@@ -198,9 +192,11 @@
 						success: function(respuesta) {
 							if(respuesta == 'perfecto'){
 								alert('Informacion enviada');
+								console.log('Informacion enviada');
 								$('#contactForm').trigger('reset');
 							}else{
 								alert('Error al enviar informacion');
+								console.log('Error al enviar informacion');
 								$('#contactForm').trigger('reset');
 							}
 						},
